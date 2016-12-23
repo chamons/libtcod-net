@@ -11,6 +11,21 @@ libtcod-net: Beautiful C# wrappers around the roguelike library [libtcod]
 
 See test code included and native [documentation] 
 
+## TODO 
+
+- Color
+- Console
+- Dijkstra
+- FOV
+- Image
+- KB
+- Line
+- Mouse
+- Name
+- Noise
+- Random
+- System
+
 ## Contributing
 
 1. Fork it!
