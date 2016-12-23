@@ -10,11 +10,60 @@ namespace libtcod.tests
 	{
 		static void Main (string[] args)
 		{
+			TestBSP ();
+			Console.WriteLine ();
 			TestPathfinding ();
 			Console.ReadLine ();
 		}
 
-		private static void TestPathfinding ()
+		static void TestBSP ()
+		{
+			BSP root = new BSP (Point.Empty, new Size (100, 100));
+			root.SplitOnce (true, 50);
+			BSP topLeft = root.Left;
+			topLeft.SplitOnce (false, 30);
+
+			root.Resize (Point.Empty, new Size (200, 200));
+			Console.WriteLine ($"Root is leaf - {root.IsLeaf}");
+			Console.WriteLine ($"TopLeft is leaf - {topLeft.IsLeaf}");
+			Console.WriteLine ($"TopLeft.Left is leaf - {topLeft.Left.IsLeaf}");
+			Console.WriteLine ($"Root contains (10,10) - {root.Contains (new Point (10, 10))}");
+			Console.WriteLine ($"TopLeft contains (10,10) - {topLeft.Contains (new Point (10, 10))}");
+			Console.WriteLine ($"TopLeft.Right contains (10,10) - {topLeft.Right.Contains (new Point (10, 10))}");
+
+			Console.WriteLine ($"TopLeft Father - {topLeft.Father}");
+
+			BSP container = root.Find (new Point (10, 10));
+			Console.WriteLine ($"Smallest contains (10, 10) - {container.Position} - {container.Size}");
+
+			root.TraverseInOrder (b =>
+			{
+				Console.WriteLine ($"TraverseInOrder - {b.Position} - {b.Size}");
+				return true;
+			});
+			root.TraverseInvertedOrder (b =>
+			{
+				Console.WriteLine ($"TraverseInvertedOrder - {b.Position} - {b.Size}");
+				return true;
+			});
+			root.TraverseLevelOrder (b =>
+			{
+				Console.WriteLine ($"TraverseLevelOrder - {b.Position} - {b.Size}");
+				return true;
+			});
+			root.TraversePostOrder (b =>
+			{
+				Console.WriteLine ($"TraversePostOrder - {b.Position} - {b.Size}");
+				return true;
+			});
+			root.TraversePreOrder (b =>
+			{
+				Console.WriteLine ($"TraversePreOrder - {b.Position} - {b.Size}");
+				return true;
+			});
+		}
+
+		static void TestPathfinding ()
 		{
 			using (Pathfinding path = new Pathfinding (new Size (50, 50), 1, (f, t) => 1))
 			{
@@ -32,7 +81,7 @@ namespace libtcod.tests
 				path.Compute (new Point (1, 1), new Point (5, 10));
 
 				Console.WriteLine ($"Path[3]: {path[3]}");
-				Console.WriteLine ($"Empty: {path.Empty}");
+				Console.WriteLine ($"Empty: {path.IsEmpty}");
 				Console.WriteLine ($"Size: {path.Size}");
 			}
 		}

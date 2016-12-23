@@ -17,7 +17,7 @@ namespace libtcod
 		protected void SetupCallback (PathCostDelegate callback)
 		{
 			Callback = callback;
-			Trampoline = new PathCostCallbackInternal (PathCallbackTrampoline);
+			Trampoline = PathCallbackTrampoline;
 		}
 
 		protected float PathCallbackTrampoline (int xFrom, int yFrom, int xTo, int yTo, IntPtr nullPtr)

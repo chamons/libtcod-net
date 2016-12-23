@@ -138,7 +138,7 @@ namespace libtcod
 
 		public override string ToString ()
 		{
-			return string.Format ("{{X={0},Y={1}}}", x.ToString (CultureInfo.InvariantCulture),
+			return string.Format ("{{X={0}, Y={1}}}", x.ToString (CultureInfo.InvariantCulture),
 				y.ToString (CultureInfo.InvariantCulture));
 		}
 		public static Point Add (Point pt, Size sz)

@@ -33,4 +33,4 @@ Just got started!
 MIT
 
 [libtcod]: https://bitbucket.org/libtcod/libtcod
-[documentation]: http://roguecentral.org/doryen/data/libtcod/doc/1.5.1/html2/color.html?c=true&cpp=false&cs=false&py=false&lua=false
+[documentation]: http://roguecentral.org/doryen/data/libtcod/doc/1.5.1/index2.html?c=true&cpp=false&cs=false&py=false&lua=false
