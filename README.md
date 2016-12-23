@@ -1,4 +1,4 @@
-# Project Name
+# libtcod-net 
 
 libtcod-net: Beautiful C# wrappers around the roguelike library [libtcod] 
 
@@ -25,8 +25,8 @@ Just got started!
 
 ## Credits
 
-Chris Hamons for C# bindings
-Jice & Mingos & rmtew and the rest of the libtcod test for the native library
+- Chris Hamons for C# bindings
+- Jice & Mingos & rmtew and the rest of the libtcod test for the native library
 
 ## License
 
