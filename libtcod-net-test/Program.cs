@@ -10,10 +10,26 @@ namespace libtcod.tests
 	{
 		static void Main (string[] args)
 		{
+			TestColor ();
+			Console.WriteLine ();
 			TestBSP ();
 			Console.WriteLine ();
 			TestPathfinding ();
 			Console.ReadLine ();
+		}
+
+		static void TestColor ()
+		{
+			Color red = ColorPresets.Red;
+			float h, s, v;
+			red.GetHSV (out h, out s, out v);
+			Console.WriteLine ($"Red in HSV - {h} {s} {v}");
+
+			Color superBlue = ColorPresets.LightBlue * 2;
+			Console.WriteLine ($"Blue *2 - {superBlue.Red} {superBlue.Green} {superBlue.Blue}");
+
+			Color purple = ColorPresets.Red + ColorPresets.Blue;
+			Console.WriteLine ($"purple - {purple.Red} {purple.Green} {purple.Blue}");
 		}
 
 		static void TestBSP ()

@@ -13,7 +13,6 @@ See test code included and native [documentation]
 
 ## TODO 
 
-- Color
 - Console
 - Dijkstra
 - FOV
@@ -36,7 +35,9 @@ See test code included and native [documentation]
 
 ## History
 
-Just got started!
+- Was originally hand created bindings - https://code.google.com/archive/p/libtcod-net/
+- Then for awhile was swig generated bindings inside libtcode
+- Now modernized hand created bindings
 
 ## Credits
 

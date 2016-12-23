@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BSP.cs" />
+    <Compile Include="Color.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Pathfinding.cs" />
