@@ -42,8 +42,10 @@
     <Compile Include="Console.cs" />
     <Compile Include="DijkstraPathFinding.cs" />
     <Compile Include="FOV.cs" />
+    <Compile Include="Keyboard.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Mouse.cs" />
     <Compile Include="Pathfinding.cs" />
     <Compile Include="PathfindingBase.cs" />
     <Compile Include="Point.cs" />

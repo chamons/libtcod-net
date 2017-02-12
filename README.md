@@ -18,10 +18,7 @@ See test code included and native [documentation]
 
 ## TODO 
 
-- Image
-- KB
 - Line
-- Mouse
 - Name
 - Noise
 - Random
