@@ -10,7 +10,7 @@ namespace libtcod
 		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		protected delegate float PathCostCallbackInternal (int xFrom, int yFrom, int xTo, int yTo, IntPtr nullPtr);
 
-		public IntPtr Handle;
+		public IntPtr Handle { get; internal set; }
 		protected PathCostCallbackInternal Trampoline;
 		private PathCostDelegate Callback;
 

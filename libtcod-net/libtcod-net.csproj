@@ -37,12 +37,14 @@
   <ItemGroup>
     <Compile Include="BSP.cs" />
     <Compile Include="Color.cs" />
+    <Compile Include="Console.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Pathfinding.cs" />
     <Compile Include="PathfindingBase.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Random.cs" />
+    <Compile Include="Rectangle.cs" />
     <Compile Include="Size.cs" />
   </ItemGroup>
   <ItemGroup>

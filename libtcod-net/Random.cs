@@ -8,6 +8,6 @@ namespace libtcod
 {
 	public class Random
 	{
-		public IntPtr Handle;
+		public IntPtr Handle { get; private set; }
 	}
 }
