@@ -6,3 +6,5 @@ bin/
 obj/
 libtcod-net-test.*
 libtcod-net.*
+*.exe
+*.pdb
