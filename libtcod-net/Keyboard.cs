@@ -3,15 +3,18 @@
 namespace libtcod
 {
 	[StructLayout (LayoutKind.Sequential)]
-	public struct KeyPress
+	public unsafe struct KeyPress
 	{
 		KeyCode keyCode;
 		byte character;
+		fixed byte text [32];
 		byte pressed;
 		byte lalt;
 		byte lctrl;
+		byte lmeta;
 		byte ralt;
 		byte rctrl;
+		byte rmeta;
 		byte shift;
 
 		public KeyCode KeyCode => keyCode;

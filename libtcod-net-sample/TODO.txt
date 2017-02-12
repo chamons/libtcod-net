@@ -1616,35 +1616,8 @@ int SDL_main (int argc, char* argv[] )
 								NULL, SAMPLE_SCREEN_X, SAMPLE_SCREEN_Y, /* the destination console & position */
 								1.0f, 1.0f /* alpha coefs */
 							 );
-# ifndef NO_SDL_SAMPLE
-			if (sdl_callback_enabled)
-			{
-				// we want libtcod to redraw the sample console even if nothing has changed in it
-				TCOD_console_set_dirty (SAMPLE_SCREEN_X, SAMPLE_SCREEN_Y, SAMPLE_SCREEN_WIDTH, SAMPLE_SCREEN_HEIGHT);
-			}
-#endif
 
-			/* display renderer list and current renderer */
-			cur_renderer = TCOD_sys_get_renderer ();
-			TCOD_console_set_default_foreground (NULL, TCOD_grey);
-			TCOD_console_set_default_background (NULL, TCOD_black);
-			TCOD_console_print_ex (NULL, 42, 46 - (TCOD_NB_RENDERERS + 1), TCOD_BKGND_SET, TCOD_LEFT, "Renderer :");
-			for (i = 0; i < TCOD_NB_RENDERERS; i++)
-			{
-				if (i == cur_renderer)
-				{
-					/* set colors for current renderer */
-					TCOD_console_set_default_foreground (NULL, TCOD_white);
-					TCOD_console_set_default_background (NULL, TCOD_light_blue);
-				}
-				else {
-					/* set colors for other renderer */
-					TCOD_console_set_default_foreground (NULL, TCOD_grey);
-					TCOD_console_set_default_background (NULL, TCOD_black);
-				}
-				TCOD_console_print_ex (NULL, 42, 46 - (TCOD_NB_RENDERERS - i), TCOD_BKGND_SET, TCOD_LEFT, renderer_name[i]);
-			}
-
+		
 			/* update the game screen */
 			TCOD_console_flush ();
 

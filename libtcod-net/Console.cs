@@ -385,7 +385,7 @@ namespace libtcod
 		[return: MarshalAs (UnmanagedType.I1)]
 		private extern static bool TCOD_console_is_fullscreen ();
 
-		private bool IsFullscreen
+		public bool IsFullscreen
 		{
 			get
 			{
@@ -400,7 +400,7 @@ namespace libtcod
 		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_set_window_title ([MarshalAs (UnmanagedType.LPStr)]string title);
 
-		private void SetWindowTitle (string title)
+		public void SetWindowTitle (string title)
 		{
 			TCOD_console_set_window_title (title);
 		}
