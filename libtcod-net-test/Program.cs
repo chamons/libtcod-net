@@ -19,7 +19,36 @@ namespace libtcod.tests
 			TestConsole ();
 			System.Console.WriteLine ();
 			TestDijkstra ();
+			System.Console.WriteLine ();
+			TestFOV ();
 			System.Console.ReadLine ();
+		}
+
+		static void TestFOV ()
+		{
+			using (FOV f = new FOV (new Size (10, 10)))
+			{
+				// . # .
+				// # . .
+				// . . .
+				f.SetCell (new Point (0, 0), true, true);
+				f.SetCell (new Point (1, 0), false, false);
+				f.SetCell (new Point (2, 0), true, true);
+				f.SetCell (new Point (0, 1), false, false);
+				f.SetCell (new Point (1, 1), true, true);
+				f.SetCell (new Point (2, 1), true, true);
+				f.SetCell (new Point (0, 2), true, true);
+				f.SetCell (new Point (1, 2), true, true);
+				f.SetCell (new Point (2, 2), true, true);
+
+				System.Console.WriteLine (f.GetCellTransparent (new Point (2, 2)));
+				System.Console.WriteLine (f.GetCellWalkable (new Point (2, 2)));
+
+				f.Calculate (new Point (0, 0), 5, true, FovAlgorithm.Shadow);
+				System.Console.WriteLine (f.IsInView (new Point (2, 0)));
+				System.Console.WriteLine (f.IsInView (new Point (0, 2)));
+				System.Console.WriteLine (f.IsInView (new Point (2, 2)));
+			}
 		}
 
 		static void TestDijkstra ()
