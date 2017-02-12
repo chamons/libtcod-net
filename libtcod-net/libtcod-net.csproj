@@ -31,8 +31,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(OS)' == 'Unix'">
-   <DefineConstants>$(DefineConstants);MAC</DefineConstants>
-</PropertyGroup>
+    <DefineConstants>$(DefineConstants);MAC</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
@@ -40,6 +40,8 @@
     <Compile Include="BSP.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Console.cs" />
+    <Compile Include="DijkstraPathFinding.cs" />
+    <Compile Include="FOV.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Pathfinding.cs" />

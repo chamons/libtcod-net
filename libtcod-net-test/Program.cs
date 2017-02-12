@@ -17,7 +17,24 @@ namespace libtcod.tests
 			TestPathfinding ();
 			System.Console.WriteLine ();
 			TestConsole ();
+			System.Console.WriteLine ();
+			TestDijkstra ();
 			System.Console.ReadLine ();
+		}
+
+		static void TestDijkstra ()
+		{
+			using (DijkstraPathfinding path = new DijkstraPathfinding (new Size (10, 10), 1, (from, to) =>
+					Math.Abs (from.X - to.X) + Math.Abs (from.Y - to.Y)))
+			{
+				path.Compute (new Point (5, 5));
+				path.SetPath (new Point (1, 1));
+				System.Console.WriteLine (path.Length);
+				System.Console.WriteLine (path.IsEmpty);
+				System.Console.WriteLine (path[2]);
+				foreach (var point in path.Generate ())
+					System.Console.WriteLine ("\t" + point);
+			}
 		}
 
 		static void TestConsole ()

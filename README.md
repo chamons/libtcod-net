@@ -18,8 +18,6 @@ See test code included and native [documentation]
 
 ## TODO 
 
-- Console
-- Dijkstra
 - FOV
 - Image
 - KB
