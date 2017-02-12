@@ -25,7 +25,20 @@ namespace libtcod.tests
 			TestLine ();
 			System.Console.WriteLine ();
 			TestNamegen ();
+			System.Console.WriteLine ();
+			TestNoise ();
 			System.Console.ReadLine ();
+		}
+
+		static void TestNoise ()
+		{
+			using (Noise s = new Noise (1))
+			{
+				float[] f = new float[] { .3f };
+				System.Console.WriteLine (s.GetNoise (f));
+				System.Console.WriteLine (s.GetFBMNoise (f, 4));
+				System.Console.WriteLine (s.GetTurbulence (f, 4));
+			}
 		}
 
 		static void TestNamegen ()

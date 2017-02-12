@@ -18,8 +18,6 @@ See test code included and native [documentation]
 
 ## TODO 
 
-- Name
-- Noise
 - Random
 - System
 

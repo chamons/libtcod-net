@@ -12,7 +12,7 @@ namespace libtcod
 
 		public IntPtr Handle { get; internal set; }
 		protected PathCostCallbackInternal Trampoline;
-		private PathCostDelegate Callback;
+		PathCostDelegate Callback;
 
 		protected void SetupCallback (PathCostDelegate callback)
 		{

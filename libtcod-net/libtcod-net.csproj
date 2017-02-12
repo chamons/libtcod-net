@@ -48,6 +48,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Mouse.cs" />
     <Compile Include="NameGenerator.cs" />
+    <Compile Include="Noise.cs" />
     <Compile Include="Pathfinding.cs" />
     <Compile Include="PathfindingBase.cs" />
     <Compile Include="Point.cs" />
