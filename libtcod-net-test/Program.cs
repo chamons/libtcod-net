@@ -7,35 +7,35 @@ namespace libtcod.tests
 		static void Main (string[] args)
 		{
 			TestColor ();
-			System.Console.WriteLine ();
+			Console.WriteLine ();
 			TestBSP ();
-			System.Console.WriteLine ();
+			Console.WriteLine ();
 			TestPathfinding ();
-			System.Console.WriteLine ();
+			Console.WriteLine ();
 			TestConsole ();
-			System.Console.WriteLine ();
+			Console.WriteLine ();
 			TestDijkstra ();
-			System.Console.WriteLine ();
+			Console.WriteLine ();
 			TestFOV ();
-			System.Console.WriteLine ();
+			Console.WriteLine ();
 			TestLine ();
-			System.Console.WriteLine ();
+			Console.WriteLine ();
 			TestNamegen ();
-			System.Console.WriteLine ();
+			Console.WriteLine ();
 			TestNoise ();
-			System.Console.WriteLine ();
+			Console.WriteLine ();
 			TestRandom ();
-			System.Console.WriteLine ();
+			Console.WriteLine ();
 			TestSystem ();
-			System.Console.ReadLine ();
+			Console.ReadLine ();
 		}
 
 		static void TestSystem ()
 		{
 			SystemAPI.Sleep (100);
 			// These return zero since message pump from GUI is not setup here
-			System.Console.WriteLine (SystemAPI.ElapsedMilliseconds);
-			System.Console.WriteLine (SystemAPI.ElapsedSeconds);
+			Console.WriteLine (SystemAPI.ElapsedMilliseconds);
+			Console.WriteLine (SystemAPI.ElapsedSeconds);
 
 			// Can not test screenshot since we don't have GUI
 			//SystemAPI.SaveScreenshot (@"C:\Users\chris\Desktop\foo.png");
@@ -45,19 +45,19 @@ namespace libtcod.tests
 		{
 			using (var defaultRandom = Random.Default)
 			{
-				System.Console.WriteLine (defaultRandom.GetInt (1, 4));
+				Console.WriteLine (defaultRandom.GetInt (1, 4));
 			}
 
 			using (var random = new Random (RandomTypes.MersenneTwister, 42))
 			{
-				System.Console.WriteLine (random.GetInt (1, 4));
-				System.Console.WriteLine (random.GetFloat (1, 4));
-				System.Console.WriteLine (random.GetDouble (1, 4));
+				Console.WriteLine (random.GetInt (1, 4));
+				Console.WriteLine (random.GetFloat (1, 4));
+				Console.WriteLine (random.GetDouble (1, 4));
 
 				random.SetRandomDistribution (RandomDistribution.Gaussian);
-				System.Console.WriteLine (random.GetInt (1, 4, 3));
-				System.Console.WriteLine (random.GetFloat (1, 4, 3));
-				System.Console.WriteLine (random.GetDouble (1, 4, 3));
+				Console.WriteLine (random.GetInt (1, 4, 3));
+				Console.WriteLine (random.GetFloat (1, 4, 3));
+				Console.WriteLine (random.GetDouble (1, 4, 3));
 			}
 		}
 
@@ -66,25 +66,25 @@ namespace libtcod.tests
 			using (Noise s = new Noise (1))
 			{
 				float[] f = new float[] { .3f };
-				System.Console.WriteLine (s.GetNoise (f));
-				System.Console.WriteLine (s.GetFBMNoise (f, 4));
-				System.Console.WriteLine (s.GetTurbulence (f, 4));
+				Console.WriteLine (s.GetNoise (f));
+				Console.WriteLine (s.GetFBMNoise (f, 4));
+				Console.WriteLine (s.GetTurbulence (f, 4));
 			}
 		}
 
 		static void TestNamegen ()
 		{
 			NameGenerator.LoadSyllableFile ("namegen/mingos_town.cfg");
-			System.Console.WriteLine (NameGenerator.Generate ("Mingos town"));
+			Console.WriteLine (NameGenerator.Generate ("Mingos town"));
 			foreach (var item in NameGenerator.GetSet ())
-				System.Console.WriteLine (item);
+				Console.WriteLine (item);
 		}
 
 		static void TestLine ()
 		{
 			Line.Setup (new Point (1, 1), new Point (5, 3));
 			foreach (Point p in Line.GetPoints (new Point (1, 1)))
-				System.Console.WriteLine (p);
+				Console.WriteLine (p);
 		}
 
 		static void TestFOV ()
@@ -104,13 +104,13 @@ namespace libtcod.tests
 				f.SetCell (new Point (1, 2), true, true);
 				f.SetCell (new Point (2, 2), true, true);
 
-				System.Console.WriteLine (f.GetCellTransparent (new Point (2, 2)));
-				System.Console.WriteLine (f.GetCellWalkable (new Point (2, 2)));
+				Console.WriteLine (f.GetCellTransparent (new Point (2, 2)));
+				Console.WriteLine (f.GetCellWalkable (new Point (2, 2)));
 
 				f.Calculate (new Point (0, 0), 5, true, FovAlgorithm.Shadow);
-				System.Console.WriteLine (f.IsInView (new Point (2, 0)));
-				System.Console.WriteLine (f.IsInView (new Point (0, 2)));
-				System.Console.WriteLine (f.IsInView (new Point (2, 2)));
+				Console.WriteLine (f.IsInView (new Point (2, 0)));
+				Console.WriteLine (f.IsInView (new Point (0, 2)));
+				Console.WriteLine (f.IsInView (new Point (2, 2)));
 			}
 		}
 
@@ -121,11 +121,11 @@ namespace libtcod.tests
 			{
 				path.Compute (new Point (5, 5));
 				path.SetPath (new Point (1, 1));
-				System.Console.WriteLine (path.Length);
-				System.Console.WriteLine (path.IsEmpty);
-				System.Console.WriteLine (path[2]);
+				Console.WriteLine (path.Length);
+				Console.WriteLine (path.IsEmpty);
+				Console.WriteLine (path[2]);
 				foreach (var point in path.Generate ())
-					System.Console.WriteLine ("\t" + point);
+					Console.WriteLine ("\t" + point);
 			}
 		}
 
@@ -139,13 +139,13 @@ namespace libtcod.tests
 			Color red = ColorPresets.Red;
 			float h, s, v;
 			red.GetHSV (out h, out s, out v);
-			System.Console.WriteLine ($"Red in HSV - {h} {s} {v}");
+			Console.WriteLine ($"Red in HSV - {h} {s} {v}");
 
 			Color superBlue = ColorPresets.LightBlue * 2;
-			System.Console.WriteLine ($"Blue *2 - {superBlue.Red} {superBlue.Green} {superBlue.Blue}");
+			Console.WriteLine ($"Blue *2 - {superBlue.Red} {superBlue.Green} {superBlue.Blue}");
 
 			Color purple = ColorPresets.Red + ColorPresets.Blue;
-			System.Console.WriteLine ($"purple - {purple.Red} {purple.Green} {purple.Blue}");
+			Console.WriteLine ($"purple - {purple.Red} {purple.Green} {purple.Blue}");
 		}
 
 		static void TestBSP ()
@@ -156,41 +156,41 @@ namespace libtcod.tests
 			topLeft.SplitOnce (false, 30);
 
 			root.Resize (Point.Empty, new Size (200, 200));
-			System.Console.WriteLine ($"Root is leaf - {root.IsLeaf}");
-			System.Console.WriteLine ($"TopLeft is leaf - {topLeft.IsLeaf}");
-			System.Console.WriteLine ($"TopLeft.Left is leaf - {topLeft.Left.IsLeaf}");
-			System.Console.WriteLine ($"Root contains (10,10) - {root.Contains (new Point (10, 10))}");
-			System.Console.WriteLine ($"TopLeft contains (10,10) - {topLeft.Contains (new Point (10, 10))}");
-			System.Console.WriteLine ($"TopLeft.Right contains (10,10) - {topLeft.Right.Contains (new Point (10, 10))}");
+			Console.WriteLine ($"Root is leaf - {root.IsLeaf}");
+			Console.WriteLine ($"TopLeft is leaf - {topLeft.IsLeaf}");
+			Console.WriteLine ($"TopLeft.Left is leaf - {topLeft.Left.IsLeaf}");
+			Console.WriteLine ($"Root contains (10,10) - {root.Contains (new Point (10, 10))}");
+			Console.WriteLine ($"TopLeft contains (10,10) - {topLeft.Contains (new Point (10, 10))}");
+			Console.WriteLine ($"TopLeft.Right contains (10,10) - {topLeft.Right.Contains (new Point (10, 10))}");
 
-			System.Console.WriteLine ($"TopLeft Father - {topLeft.Father}");
+			Console.WriteLine ($"TopLeft Father - {topLeft.Father}");
 
 			BSP container = root.Find (new Point (10, 10));
-			System.Console.WriteLine ($"Smallest contains (10, 10) - {container.Position} - {container.Size}");
+			Console.WriteLine ($"Smallest contains (10, 10) - {container.Position} - {container.Size}");
 
 			root.TraverseInOrder (b =>
 			{
-				System.Console.WriteLine ($"TraverseInOrder - {b.Position} - {b.Size}");
+				Console.WriteLine ($"TraverseInOrder - {b.Position} - {b.Size}");
 				return true;
 			});
 			root.TraverseInvertedOrder (b =>
 			{
-				System.Console.WriteLine ($"TraverseInvertedOrder - {b.Position} - {b.Size}");
+				Console.WriteLine ($"TraverseInvertedOrder - {b.Position} - {b.Size}");
 				return true;
 			});
 			root.TraverseLevelOrder (b =>
 			{
-				System.Console.WriteLine ($"TraverseLevelOrder - {b.Position} - {b.Size}");
+				Console.WriteLine ($"TraverseLevelOrder - {b.Position} - {b.Size}");
 				return true;
 			});
 			root.TraversePostOrder (b =>
 			{
-				System.Console.WriteLine ($"TraversePostOrder - {b.Position} - {b.Size}");
+				Console.WriteLine ($"TraversePostOrder - {b.Position} - {b.Size}");
 				return true;
 			});
 			root.TraversePreOrder (b =>
 			{
-				System.Console.WriteLine ($"TraversePreOrder - {b.Position} - {b.Size}");
+				Console.WriteLine ($"TraversePreOrder - {b.Position} - {b.Size}");
 				return true;
 			});
 		}
@@ -200,21 +200,21 @@ namespace libtcod.tests
 			using (Pathfinding path = new Pathfinding (new Size (50, 50), 1, (f, t) => 1))
 			{
 				path.Compute (new Point (1, 1), new Point (5, 10));
-				System.Console.WriteLine ($"Origin: {path.Origin}");
-				System.Console.WriteLine ($"Dest: {path.Destination}");
+				Console.WriteLine ($"Origin: {path.Origin}");
+				Console.WriteLine ($"Dest: {path.Destination}");
 
 				Point? current = path.Origin;
 				while (current.HasValue)
 				{
-					System.Console.WriteLine ($"Walk: {current.Value}");
+					Console.WriteLine ($"Walk: {current.Value}");
 					current = path.WalkPath (current.Value, true);
 				}
 
 				path.Compute (new Point (1, 1), new Point (5, 10));
 
-				System.Console.WriteLine ($"Path[3]: {path[3]}");
-				System.Console.WriteLine ($"Empty: {path.IsEmpty}");
-				System.Console.WriteLine ($"Size: {path.Size}");
+				Console.WriteLine ($"Path[3]: {path[3]}");
+				Console.WriteLine ($"Empty: {path.IsEmpty}");
+				Console.WriteLine ($"Size: {path.Size}");
 			}
 		}
 	}

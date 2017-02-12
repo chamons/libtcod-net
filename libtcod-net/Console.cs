@@ -44,9 +44,9 @@ namespace libtcod
 		}
 	}
 
-	public class Console : IDisposable
+	public class ConsoleWindow : IDisposable
 	{
-		internal Console (IntPtr handle, int width, int height)
+		internal ConsoleWindow (IntPtr handle, int width, int height)
 		{
 			Handle = handle;
 			Width = width;
@@ -211,12 +211,12 @@ namespace libtcod
 		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_blit (IntPtr handle, int xSrc, int ySrc, int wSrc, int hSrc, IntPtr dst, int xDst, int yDst, float foregroundAlpha, float backgroundAlpha);
 
-		public void Blit (Rectangle source, Console dest, int xDst, int yDst)
+		public void Blit (Rectangle source, ConsoleWindow dest, int xDst, int yDst)
 		{
 			Blit (source, dest, xDst, yDst, 1.0f, 1.0f);
 		}
 
-		public void Blit (Rectangle source, Console dest, int xDst, int yDst, float foregroundAlpha, float backgroundAlpha)
+		public void Blit (Rectangle source, ConsoleWindow dest, int xDst, int yDst, float foregroundAlpha, float backgroundAlpha)
 		{
 			TCOD_console_blit (Handle, source.X, source.Y, source.Height, source.Width, dest.Handle, xDst, yDst, foregroundAlpha, backgroundAlpha);
 		}
@@ -301,8 +301,14 @@ namespace libtcod
 		}
 	}
 
+	public enum ConsoleRender
+	{
+		GLSL,
+		OPENGL,
+		SDL
+	}
 
-	public class RootConsole : Console
+	public class RootConsoleWindow : ConsoleWindow
 	{
 		public override void Dispose ()
 		{
@@ -310,22 +316,22 @@ namespace libtcod
 		}
 
 		[DllImport (Constants.LibraryName)]
-		private extern static void TCOD_console_init_root (int w, int h, [MarshalAs (UnmanagedType.LPStr)]string title, bool fullscreen);
+		private extern static void TCOD_console_init_root (int w, int h, [MarshalAs (UnmanagedType.LPStr)]string title, bool fullscreen, ConsoleRender renderer);
 
-		private RootConsole (Size s, String title, bool fullscreen)
+		private RootConsoleWindow (Size s, String title, bool fullscreen, ConsoleRender renderer)
 			: base (IntPtr.Zero, s.Width, s.Height)
 		{
-			TCOD_console_init_root (s.Width, s.Height, title, fullscreen);
+			TCOD_console_init_root (s.Width, s.Height, title, fullscreen, renderer);
 		}
 
 		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_set_custom_font ([MarshalAs (UnmanagedType.LPStr)] string fontFile, int flags, int numberCharsHoriz, int numberCharsVert);
 
-		private RootConsole (Size s, String title, bool fullscreen, CustomFontRequest font)
+		private RootConsoleWindow (Size s, String title, bool fullscreen, CustomFontRequest font, ConsoleRender renderer)
 			: base (IntPtr.Zero, s.Width, s.Height)
 		{
 			TCOD_console_set_custom_font (font.FontFile, (int)font.FontRequestType, font.NumberHorizontalChars, font.NumberVerticalChars);
-			TCOD_console_init_root (s.Width, s.Height, title, fullscreen);
+			TCOD_console_init_root (s.Width, s.Height, title, fullscreen, renderer);
 		}
 
 		[DllImport (Constants.LibraryName)]
@@ -402,22 +408,22 @@ namespace libtcod
 		[DllImport (Constants.LibraryName)]
 		private extern static IntPtr TCOD_console_new (int w, int h);
 
-		public static Console CreateOffscreenConsole (Size s)
+		public static ConsoleWindow CreateOffscreenConsole (Size s)
 		{
-			return new Console (TCOD_console_new (s.Width, s.Height), s.Width, s.Height);
+			return new ConsoleWindow (TCOD_console_new (s.Width, s.Height), s.Width, s.Height);
 		}
 
-		public static RootConsole Instance { get; private set; }
+		public static RootConsoleWindow Instance { get; private set; }
 
-		public static RootConsole Setup (int width, int height, string windowTitle, bool isFullscreen, CustomFontRequest font = null)
+		public static RootConsoleWindow Setup (int width, int height, string windowTitle, bool isFullscreen, ConsoleRender render, CustomFontRequest font = null)
 		{
 			if (Instance != null)
 				throw new InvalidOperationException ("Can not setup RootConsole twice");
 
 			if (font == null)
-				Instance = new RootConsole (new Size (width, height), windowTitle, isFullscreen);
+				Instance = new RootConsoleWindow (new Size (width, height), windowTitle, isFullscreen, render);
 			else
-				Instance = new RootConsole (new Size (width, height), windowTitle, isFullscreen, font);
+				Instance = new RootConsoleWindow (new Size (width, height), windowTitle, isFullscreen, font, render);
 
 			return Instance;
 		}
