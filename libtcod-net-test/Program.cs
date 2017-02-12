@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libtcod.tests
 {
@@ -29,7 +25,20 @@ namespace libtcod.tests
 			TestNoise ();
 			System.Console.WriteLine ();
 			TestRandom ();
+			System.Console.WriteLine ();
+			TestSystem ();
 			System.Console.ReadLine ();
+		}
+
+		static void TestSystem ()
+		{
+			SystemAPI.Sleep (100);
+			// These return zero since message pump from GUI is not setup here
+			System.Console.WriteLine (SystemAPI.ElapsedMilliseconds);
+			System.Console.WriteLine (SystemAPI.ElapsedSeconds);
+
+			// Can not test screenshot since we don't have GUI
+			//SystemAPI.SaveScreenshot (@"C:\Users\chris\Desktop\foo.png");
 		}
 
 		static void TestRandom ()

@@ -16,10 +16,6 @@ This is to work around https://bugzilla.xamarin.com/show_bug.cgi?id=51693 for no
 
 See test code included and native [documentation] 
 
-## TODO 
-
-- System
-
 ## Contributing
 
 1. Fork it!
