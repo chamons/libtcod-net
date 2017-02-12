@@ -1,5 +1,4 @@
-﻿using System;
-namespace libtcod
+﻿namespace libtcod
 {
 	internal static class Constants
 	{
