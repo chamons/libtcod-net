@@ -21,7 +21,16 @@ namespace libtcod.tests
 			TestDijkstra ();
 			System.Console.WriteLine ();
 			TestFOV ();
+			System.Console.WriteLine ();
+			TestLine ();
 			System.Console.ReadLine ();
+		}
+
+		static void TestLine ()
+		{
+			Line.Setup (new Point (1, 1), new Point (5, 3));
+			foreach (Point p in Line.GetPoints (new Point (1, 1)))
+				System.Console.WriteLine (p);
 		}
 
 		static void TestFOV ()

@@ -18,7 +18,6 @@ See test code included and native [documentation]
 
 ## TODO 
 
-- Line
 - Name
 - Noise
 - Random
