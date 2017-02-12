@@ -23,7 +23,17 @@ namespace libtcod.tests
 			TestFOV ();
 			System.Console.WriteLine ();
 			TestLine ();
+			System.Console.WriteLine ();
+			TestNamegen ();
 			System.Console.ReadLine ();
+		}
+
+		static void TestNamegen ()
+		{
+			NameGenerator.LoadSyllableFile ("namegen/mingos_town.cfg");
+			System.Console.WriteLine (NameGenerator.Generate ("Mingos town"));
+			foreach (var item in NameGenerator.GetSet ())
+				System.Console.WriteLine (item);
 		}
 
 		static void TestLine ()
