@@ -31,7 +31,8 @@
     <TlsProvider>Default</TlsProvider>
     <LinkMode>None</LinkMode>
     <XamMacArch></XamMacArch>
-    <MonoBundlingExtraArgs>--native-reference=/Users/donblas/Programming/libtcod-net/external/macos/libtcod.a --link_flags="-framework OpenGL" --native-reference=/Users/donblas/Programming/libtcod-net/external/macos/libtcod.a --link_flags="-framework OpenGL" --native-reference=/Users/donblas/Programming/libtcod-net/external/macos/libtcod.a --link_flags="-framework OpenGL" --native-reference=/Users/donblas/Programming/libtcod-net/external/macos/CustomSDLMain.a</MonoBundlingExtraArgs>
+    <MonoBundlingExtraArgs>--native-reference=/Users/donblas/Programming/libtcod-net/external/macos/libtcod.a --native-reference=/Users/donblas/Programming/libtcod-net/external/macos/libSDL-1.2.0.dylib --link_flags="-framework OpenGL" --native-reference=/Users/donblas/Programming/libtcod-net/external/macos/CustomSDLMain.a
+</MonoBundlingExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -73,12 +74,6 @@
       <Project>{D64C32AB-8337-4F2D-ADC5-765D21B9F2BF}</Project>
       <Name>libtcod-net</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <NativeReference Include="..\external\macos\libSDL-1.2.0.dylib">
-      <Kind>Dynamic</Kind>
-      <SmartLink>False</SmartLink>
-    </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>
