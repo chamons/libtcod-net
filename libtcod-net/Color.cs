@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -80,7 +80,7 @@ namespace libtcod
 		}
 
 		// 0<= h < 360, 0 <= s <= 1, 0 <= v <= 1 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_color_set_HSV (ref Color c, float h, float s, float v);
 
 		public static Color FromHSV (float hue, float saturation, float value)
@@ -90,7 +90,7 @@ namespace libtcod
 			return c;
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_color_get_HSV (Color c, out float h, out float s, out float v);
 
 		public void GetHSV (out float h, out float s, out float v)
@@ -138,7 +138,7 @@ namespace libtcod
 		}
 
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static Color TCOD_color_add (Color c1, Color c2);
 
 		public static Color operator + (Color lhs, Color rhs)
@@ -146,7 +146,7 @@ namespace libtcod
 			return TCOD_color_add (lhs, rhs);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static Color TCOD_color_multiply (Color c1, Color c2);
 
 		public static Color operator * (Color lhs, Color rhs)
@@ -154,7 +154,7 @@ namespace libtcod
 			return TCOD_color_multiply (lhs, rhs);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static Color TCOD_color_multiply_scalar (Color c1, float value);
 
 		public static Color operator * (Color lhs, float rhs)

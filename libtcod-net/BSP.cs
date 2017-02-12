@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -20,10 +20,10 @@ namespace libtcod
 		[UnmanagedFunctionPointer (CallingConvention.Cdecl)]
 		delegate bool BSPTraversalTrampolineDelegate (IntPtr bsp, IntPtr nullPtr);
 	
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		extern static IntPtr TCOD_bsp_new ();
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		extern static IntPtr TCOD_bsp_new_with_size (int x, int y, int w, int h);
 
 		public BSP ()
@@ -63,7 +63,7 @@ namespace libtcod
 			return false;
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		extern static void TCOD_bsp_delete (IntPtr node);
 
 		public void Dispose ()
@@ -74,7 +74,7 @@ namespace libtcod
 				TCOD_bsp_delete ((IntPtr)Handle);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		extern static IntPtr TCOD_bsp_left (IntPtr node);
 
 		public BSP Left
@@ -86,7 +86,7 @@ namespace libtcod
 			}
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		extern static IntPtr TCOD_bsp_right (IntPtr node);
 
 		public BSP Right
@@ -98,7 +98,7 @@ namespace libtcod
 			}
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		extern static IntPtr TCOD_bsp_find_node (IntPtr node, int x, int y);
 
 		public BSP Find (Point position)
@@ -108,7 +108,7 @@ namespace libtcod
 
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		extern static IntPtr TCOD_bsp_father (IntPtr node);
 
 		public BSP Father
@@ -120,7 +120,7 @@ namespace libtcod
 			}
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		extern static void TCOD_bsp_split_once (IntPtr node, bool horizontal, int position);
 
 		public void SplitOnce (bool horizontal, int position)
@@ -128,7 +128,7 @@ namespace libtcod
 			TCOD_bsp_split_once ((IntPtr)Handle, horizontal, position);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool TCOD_bsp_is_leaf (IntPtr node);
 
@@ -140,7 +140,7 @@ namespace libtcod
 			}
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		extern static void TCOD_bsp_resize (IntPtr node, int x, int y, int w, int h);
 
 		public void Resize (Point position, Size size)
@@ -148,7 +148,7 @@ namespace libtcod
 			TCOD_bsp_resize ((IntPtr)Handle, position.X, position.Y, size.Width, size.Height);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		extern static void TCOD_bsp_split_recursive (IntPtr node, IntPtr randomizer, int nb, int minHSize, int minVSize, float maxHRatio, float maxVRatio);
 
 		public void SplitRecursive (Random randomizer, int nb, int minHSize, int minVSize, float maxHRatio, float maxVRatio)
@@ -156,7 +156,7 @@ namespace libtcod
 				TCOD_bsp_split_recursive ((IntPtr)Handle, randomizer == null ? IntPtr.Zero : randomizer.Handle, nb, minHSize, minVSize, maxHRatio, maxVRatio);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool TCOD_bsp_contains (IntPtr node, int x, int y);
 
@@ -165,7 +165,7 @@ namespace libtcod
 			return TCOD_bsp_contains ((IntPtr)Handle, position.X, position.Y);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool TCOD_bsp_traverse_pre_order (IntPtr node, BSPTraversalTrampolineDelegate listener, IntPtr userData);
 
@@ -175,7 +175,7 @@ namespace libtcod
 			return TCOD_bsp_traverse_pre_order ((IntPtr)Handle, Trampoline, IntPtr.Zero);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool TCOD_bsp_traverse_in_order (IntPtr node, BSPTraversalTrampolineDelegate listener, IntPtr userData);
 
@@ -185,7 +185,7 @@ namespace libtcod
 			return TCOD_bsp_traverse_in_order ((IntPtr)Handle, Trampoline, IntPtr.Zero);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool TCOD_bsp_traverse_post_order (IntPtr node, BSPTraversalTrampolineDelegate listener, IntPtr userData);
 
@@ -195,7 +195,7 @@ namespace libtcod
 			return TCOD_bsp_traverse_in_order ((IntPtr)Handle, Trampoline, IntPtr.Zero);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool TCOD_bsp_traverse_level_order (IntPtr node, BSPTraversalTrampolineDelegate listener, IntPtr userData);
 
@@ -205,7 +205,7 @@ namespace libtcod
 			return TCOD_bsp_traverse_level_order ((IntPtr)Handle, Trampoline, IntPtr.Zero);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool TCOD_bsp_traverse_inverted_level_order (IntPtr node, BSPTraversalTrampolineDelegate listener, IntPtr userData);
 

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libtcod-net", "libtcod-net\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libtcod-net-test", "libtcod-net-test\libtcod-net-test.csproj", "{F9F0A354-8A83-4DBD-A514-D7A16E62CDAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libtcodnet.mactest", "libtcodnet.mactest\libtcodnet.mactest.csproj", "{D8045BE8-7551-4D67-8412-6480A50F23FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F9F0A354-8A83-4DBD-A514-D7A16E62CDAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9F0A354-8A83-4DBD-A514-D7A16E62CDAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9F0A354-8A83-4DBD-A514-D7A16E62CDAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8045BE8-7551-4D67-8412-6480A50F23FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8045BE8-7551-4D67-8412-6480A50F23FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8045BE8-7551-4D67-8412-6480A50F23FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8045BE8-7551-4D67-8412-6480A50F23FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
