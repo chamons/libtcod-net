@@ -27,7 +27,29 @@ namespace libtcod.tests
 			TestNamegen ();
 			System.Console.WriteLine ();
 			TestNoise ();
+			System.Console.WriteLine ();
+			TestRandom ();
 			System.Console.ReadLine ();
+		}
+
+		static void TestRandom ()
+		{
+			using (var defaultRandom = Random.Default)
+			{
+				System.Console.WriteLine (defaultRandom.GetInt (1, 4));
+			}
+
+			using (var random = new Random (RandomTypes.MersenneTwister, 42))
+			{
+				System.Console.WriteLine (random.GetInt (1, 4));
+				System.Console.WriteLine (random.GetFloat (1, 4));
+				System.Console.WriteLine (random.GetDouble (1, 4));
+
+				random.SetRandomDistribution (RandomDistribution.Gaussian);
+				System.Console.WriteLine (random.GetInt (1, 4, 3));
+				System.Console.WriteLine (random.GetFloat (1, 4, 3));
+				System.Console.WriteLine (random.GetDouble (1, 4, 3));
+			}
 		}
 
 		static void TestNoise ()
