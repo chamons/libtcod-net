@@ -53,7 +53,7 @@ namespace libtcod
 			Height = height;
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_delete (IntPtr handle);
 
 		public virtual void Dispose ()
@@ -66,31 +66,31 @@ namespace libtcod
 		public int Width { get; private set; }
 		public int Height { get; private set; }
 
-		[DllImport ("libtcod")]
-		private extern static Color TCOD_console_get_foreground_color (IntPtr handle);
+		[DllImport (Constants.LibraryName)]
+		private extern static Color TCOD_console_get_default_foreground (IntPtr handle);
 
-		[DllImport ("libtcod")]
-		private extern static void TCOD_console_set_foreground_color (IntPtr handle, Color color);
+		[DllImport (Constants.LibraryName)]
+		private extern static void TCOD_console_set_default_foreground (IntPtr handle, Color color);
 
-		public Color ForegroundColor
+		public Color DefaultForegroundColor
 		{
-			get { return TCOD_console_get_foreground_color (Handle); }
-			set { TCOD_console_set_foreground_color (Handle, value); }
+			get { return TCOD_console_get_default_foreground (Handle); }
+			set { TCOD_console_set_default_foreground (Handle, value); }
 		}
 
-		[DllImport ("libtcod")]
-		private extern static Color TCOD_console_get_background_color (IntPtr handle);
+		[DllImport (Constants.LibraryName)]
+		private extern static Color TCOD_console_get_default_background (IntPtr handle);
 
-		[DllImport ("libtcod")]
-		private extern static void TCOD_console_set_background_color (IntPtr handle, Color color);
+		[DllImport (Constants.LibraryName)]
+		private extern static void TCOD_console_set_default_background (IntPtr handle, Color color);
 
-		public Color BackgroundColor
+		public Color DefaultBackgroundColor
 		{
-			get { return TCOD_console_get_background_color (Handle); }
-			set { TCOD_console_set_background_color (Handle, value); }
+			get { return TCOD_console_get_default_background (Handle); }
+			set { TCOD_console_set_default_background (Handle, value); }
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_clear (IntPtr handle);
 
 		public void Clear ()
@@ -98,7 +98,7 @@ namespace libtcod
 			TCOD_console_clear (Handle);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_put_char (IntPtr handle, int x, int y, int c, /*BackgroundFlag*/ int flag);
 
 		public void PutChar (Point p, char c, Background flag)
@@ -121,44 +121,44 @@ namespace libtcod
 			TCOD_console_put_char (Handle, p.X, p.Y, c, (int)BackgroundFlag.Set);
 		}
 
-		[DllImport ("libtcod")]
-		private extern static void TCOD_console_set_back (IntPtr con, int x, int y, Color col, /*BackgroundFlag*/ int flag);
+		[DllImport (Constants.LibraryName)]
+		private extern static void TCOD_console_set_char_background (IntPtr con, int x, int y, Color col, /*BackgroundFlag*/ int flag);
 
 		public void SetBackground (Point p, Color col, Background flag)
 		{
-			TCOD_console_set_back (Handle, p.X, p.Y, col, flag.Value);
+			TCOD_console_set_char_background (Handle, p.X, p.Y, col, flag.Value);
 		}
 
 		public void SetBackground (Point p, Color col)
 		{
-			TCOD_console_set_back (Handle, p.X, p.Y, col, (int)BackgroundFlag.Set);
+			TCOD_console_set_char_background (Handle, p.X, p.Y, col, (int)BackgroundFlag.Set);
 		}
 
-		[DllImport ("libtcod")]
-		private extern static void TCOD_console_set_fore (IntPtr con, int x, int y, Color col);
+		[DllImport (Constants.LibraryName)]
+		private extern static void TCOD_console_set_char_foreground (IntPtr con, int x, int y, Color col);
 
 		public void SetForeground (Point p, Color col)
 		{
-			TCOD_console_set_fore (Handle, p.X, p.Y, col);
+			TCOD_console_set_char_foreground (Handle, p.X, p.Y, col);
 		}
 
-		[DllImport ("libtcod")]
-		private extern static Color TCOD_console_get_back (IntPtr con, int x, int y);
+		[DllImport (Constants.LibraryName)]
+		private extern static Color TCOD_console_get_char_background (IntPtr con, int x, int y);
 
 		public Color GetBackground (Point p)
 		{
-			return TCOD_console_get_back (Handle, p.X, p.Y);
+			return TCOD_console_get_char_background (Handle, p.X, p.Y);
 		}
 
-		[DllImport ("libtcod")]
-		private extern static Color TCOD_console_get_fore (IntPtr con, int x, int y);
+		[DllImport (Constants.LibraryName)]
+		private extern static Color TCOD_console_get_char_foreground (IntPtr con, int x, int y);
 
 		public Color GetForeground (Point p)
 		{
-			return TCOD_console_get_fore (Handle, p.X, p.Y);
+			return TCOD_console_get_char_foreground (Handle, p.X, p.Y);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static int TCOD_console_get_char (IntPtr handle, int x, int y);
 
 		public char GetCharacter (Point p)
@@ -166,7 +166,7 @@ namespace libtcod
 			return (char)TCOD_console_get_char (Handle, p.X, p.Y);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_set_char (IntPtr handle, int x, int y, int c);
 
 		public void SetCharacter (Point p, char c)
@@ -179,7 +179,7 @@ namespace libtcod
 			PrintLine (str, p, Background.Set, align);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_print_ex (IntPtr handle, int x, int y, /*BackgroundFlag*/ int background, /* LineAlignment */ int alignment, [MarshalAs (UnmanagedType.LPStr)]string s);
 		
 		public void PrintLine (string str, Point p, Background background, LineAlignment align)
@@ -192,7 +192,7 @@ namespace libtcod
 			return PrintLineRect (str, rect, Background.Set, align);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static int TCOD_console_print_rect_ex (IntPtr handle, int x, int y, int w, int h, /*BackgroundFlag*/ int background, /* LineAlignment */ int alignment, [MarshalAs (UnmanagedType.LPStr)]string s);
 
 		public int PrintLineRect (string str, Rectangle rect, Background background, LineAlignment align)
@@ -200,7 +200,7 @@ namespace libtcod
 			return TCOD_console_print_rect_ex (Handle, rect.X, rect.Y, rect.Width, rect.Height, background.Value, (int)align, str);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static int TCOD_console_get_height_rect (IntPtr handle, int x, int y, int w, int h, [MarshalAs (UnmanagedType.LPStr)]string s);
 
 		public int GetPrintHeight (string str, Rectangle rect)
@@ -208,7 +208,7 @@ namespace libtcod
 			return TCOD_console_get_height_rect (Handle, rect.X, rect.Y, rect.Width, rect.Height, str);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_blit (IntPtr handle, int xSrc, int ySrc, int wSrc, int hSrc, IntPtr dst, int xDst, int yDst, float foregroundAlpha, float backgroundAlpha);
 
 		public void Blit (Rectangle source, Console dest, int xDst, int yDst)
@@ -221,7 +221,7 @@ namespace libtcod
 			TCOD_console_blit (Handle, source.X, source.Y, source.Height, source.Width, dest.Handle, xDst, yDst, foregroundAlpha, backgroundAlpha);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_rect (IntPtr handle, int x, int y, int w, int h, bool clear, /*BackgroundFlag*/ int flag);
 
 		public void DrawRect (Rectangle rect, bool clear)
@@ -234,7 +234,7 @@ namespace libtcod
 			TCOD_console_rect (Handle, rect.X, rect.Y, rect.Width, rect.Height, clear, flag.Value);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_hline (IntPtr handle, int x, int y, int l);
 
 		public void DrawHLine (Point p, int l)
@@ -242,7 +242,7 @@ namespace libtcod
 			TCOD_console_hline (Handle, p.X, p.Y, l);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_vline (IntPtr handle, int x, int y, int l);
 
 		public void DrawVLine (Point p, int l)
@@ -250,7 +250,7 @@ namespace libtcod
 			TCOD_console_vline (Handle, p.X, p.Y, l);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_print_frame (IntPtr handle, int x, int y, int w, int h, bool clear, /*BackgroundFlag*/ int flag, [MarshalAs (UnmanagedType.LPStr)]string str);
 
 		public void DrawFrame (Rectangle rect, bool clear, string str)
@@ -258,7 +258,7 @@ namespace libtcod
 			TCOD_console_print_frame (Handle, rect.X, rect.Y, rect.Width, rect.Height, clear, Background.Set.Value, str);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_print_frame (IntPtr handle, int x, int y, int w, int h, bool clear, /*BackgroundFlag*/ int flag, IntPtr nullStr);
 
 		public void DrawFrame (Rectangle rect, bool clear, Background flag, string str)
@@ -276,7 +276,7 @@ namespace libtcod
 			TCOD_console_print_frame (Handle, rect.X, rect.Y, rect.Width, rect.Height, clear, flag.Value, IntPtr.Zero);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private static extern void TCOD_console_credits ();
 
 		public void ConsoleCredits ()
@@ -284,7 +284,7 @@ namespace libtcod
 			TCOD_console_credits ();
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private static extern byte TCOD_console_credits_render (int x, int y, bool alpha);
 
 		public bool ConsoleCreditsRender (Point p, bool alpha)
@@ -292,7 +292,7 @@ namespace libtcod
 			return TCOD_console_credits_render (p.X, p.Y, alpha) == 1;
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_credits_reset ();
 
 		public void ResetCreditsAnimation ()
@@ -309,7 +309,7 @@ namespace libtcod
 			// Don't dispose root console
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_init_root (int w, int h, [MarshalAs (UnmanagedType.LPStr)]string title, bool fullscreen);
 
 		private RootConsole (Size s, String title, bool fullscreen)
@@ -318,7 +318,7 @@ namespace libtcod
 			TCOD_console_init_root (s.Width, s.Height, title, fullscreen);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_set_custom_font ([MarshalAs (UnmanagedType.LPStr)] string fontFile, int flags, int numberCharsHoriz, int numberCharsVert);
 
 		private RootConsole (Size s, String title, bool fullscreen, CustomFontRequest font)
@@ -328,7 +328,7 @@ namespace libtcod
 			TCOD_console_init_root (s.Width, s.Height, title, fullscreen);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		private extern static bool TCOD_console_is_window_closed ();
 
@@ -340,7 +340,7 @@ namespace libtcod
 			}			
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_flush ();
 
 		public void Flush ()
@@ -348,7 +348,7 @@ namespace libtcod
 			TCOD_console_flush ();
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_set_fade (byte fade, Color fadingColor);
 
 		public void SetFade (byte fade, Color fadingColor)
@@ -356,7 +356,7 @@ namespace libtcod
 			TCOD_console_set_fade (fade, fadingColor);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static byte TCOD_console_get_fade ();
 
 		public byte GetFadeLevel ()
@@ -364,7 +364,7 @@ namespace libtcod
 			return TCOD_console_get_fade ();
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static Color TCOD_console_get_fading_color ();
 
 		public Color GetFadeColor ()
@@ -372,10 +372,10 @@ namespace libtcod
 			return TCOD_console_get_fading_color ();
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_set_fullscreen (bool fullscreen);
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		private extern static bool TCOD_console_is_fullscreen ();
 
@@ -391,7 +391,7 @@ namespace libtcod
 			}
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static void TCOD_console_set_window_title ([MarshalAs (UnmanagedType.LPStr)]string title);
 
 		private void SetWindowTitle (string title)
@@ -399,7 +399,7 @@ namespace libtcod
 			TCOD_console_set_window_title (title);
 		}
 
-		[DllImport ("libtcod")]
+		[DllImport (Constants.LibraryName)]
 		private extern static IntPtr TCOD_console_new (int w, int h);
 
 		public static Console CreateOffscreenConsole (Size s)

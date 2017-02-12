@@ -6,6 +6,11 @@ libtcod-net: Beautiful C# wrappers around the roguelike library [libtcod]
 
 1. Build the project.
 2. Copy the managed and native libraries in dist to your project to consume
+3. On macOS inside your Xamarin.Mac project you will need to add the following to your Additional MMP arguments, updating YOUR_PATH to point to your specific location.
+	
+--native-reference=YOUR_PATH/external/macos/libtcod.a --native-reference=YOUR_PATH/external/macos/libSDL-1.2.0.dylib --link_flags="-framework OpenGL" --native-reference=YOUR_PATH/external/macos/CustomSDLMain.a
+
+This is to work around https://bugzilla.xamarin.com/show_bug.cgi?id=51693 for now.
 
 ## Usage
 
