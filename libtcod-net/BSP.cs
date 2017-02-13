@@ -152,6 +152,11 @@ namespace libtcod
 				TCOD_bsp_split_recursive ((IntPtr)Handle, randomizer == null ? IntPtr.Zero : randomizer.Handle, nb, minHSize, minVSize, maxHRatio, maxVRatio);
 		}
 
+		public void SplitRecursive (int nb, int minHSize, int minVSize, float maxHRatio, float maxVRatio)
+		{
+			TCOD_bsp_split_recursive ((IntPtr)Handle, IntPtr.Zero, nb, minHSize, minVSize, maxHRatio, maxVRatio);
+		}
+
 		[DllImport (Constants.LibraryName)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool TCOD_bsp_contains (IntPtr node, int x, int y);
@@ -205,10 +210,18 @@ namespace libtcod
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool TCOD_bsp_traverse_inverted_level_order (IntPtr node, BSPTraversalTrampolineDelegate listener, IntPtr userData);
 
-		public bool TraverseInvertedOrder (BSPTraversalDelegate listner)
+		public bool TraverseInvertedLevelOrder (BSPTraversalDelegate listner)
 		{
 			Delegate = listner;
 			return TCOD_bsp_traverse_inverted_level_order ((IntPtr)Handle, Trampoline, IntPtr.Zero);
+		}
+
+		[DllImport (Constants.LibraryName)]
+		extern static bool TCOD_bsp_remove_sons (IntPtr node);
+
+		public void RemoveSons ()
+		{
+			TCOD_bsp_remove_sons ((IntPtr)Handle);
 		}
 
 		public int X

@@ -174,7 +174,7 @@ namespace libtcod
 			TCOD_console_set_char (Handle, p.X, p.Y, (int)c);
 		}
 
-		public void PrintLine (string str, Point p, LineAlignment align)
+		public void PrintLine (string str, Point p, LineAlignment align = LineAlignment.Left)
 		{
 			PrintLine (str, p, Background.Set, align);
 		}
@@ -344,6 +344,30 @@ namespace libtcod
 			{
 				return TCOD_console_is_window_closed ();
 			}			
+		}
+
+		[DllImport (Constants.LibraryName)]
+		[return: MarshalAs (UnmanagedType.I1)]
+		private extern static bool TCOD_console_is_active ();
+
+		public bool IsActive
+		{
+			get
+			{
+				return TCOD_console_is_active ();
+			}
+		}
+
+		[DllImport (Constants.LibraryName)]
+		[return: MarshalAs (UnmanagedType.I1)]
+		private extern static bool TCOD_console_has_mouse_focus ();
+
+		public bool HasMouseFocus
+		{
+			get
+			{
+				return TCOD_console_has_mouse_focus ();
+			}
 		}
 
 		[DllImport (Constants.LibraryName)]

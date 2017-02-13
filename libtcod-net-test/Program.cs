@@ -173,9 +173,9 @@ namespace libtcod.tests
 				Console.WriteLine ($"TraverseInOrder - {b.Position} - {b.Size}");
 				return true;
 			});
-			root.TraverseInvertedOrder (b =>
+			root.TraverseInvertedLevelOrder (b =>
 			{
-				Console.WriteLine ($"TraverseInvertedOrder - {b.Position} - {b.Size}");
+				Console.WriteLine ($"TraverseInvertedLevelOrder - {b.Position} - {b.Size}");
 				return true;
 			});
 			root.TraverseLevelOrder (b =>
