@@ -85,7 +85,8 @@
 		Numlock,
 		Scrolllock,
 		Space,
-		Char
+		Char,
+		Text
 	}
 
 	public enum KeyPressType

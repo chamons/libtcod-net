@@ -1,13 +1,15 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace libtcod
 {
-	[StructLayout (LayoutKind.Sequential)]
 	public unsafe struct KeyPress
 	{
 		KeyCode keyCode;
 		byte character;
+
 		fixed byte text [32];
+
 		byte pressed;
 		byte lalt;
 		byte lctrl;
@@ -18,7 +20,19 @@ namespace libtcod
 		byte shift;
 
 		public KeyCode KeyCode => keyCode;
-		public byte Character => character;
+		public char Character => (char)character;
+
+		public unsafe string Text
+		{
+			get
+			{
+				fixed (byte* ptr = text)
+				{
+					return Marshal.PtrToStringAnsi ((IntPtr)ptr);
+				}
+			}
+		}
+
 		public bool Pressed => pressed == 1;
 		public bool LeftAlt => lalt == 1;
 		public bool LeftControl => lctrl == 1;
@@ -44,7 +58,7 @@ namespace libtcod
 
 		public static KeyPress CheckForKeypress (KeyPressType pressFlags)
 		{
-			return TCOD_console_check_for_keypress (pressFlags);
+				return TCOD_console_check_for_keypress (pressFlags);
 		}
 
 		[DllImport (Constants.LibraryName)]

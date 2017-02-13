@@ -218,7 +218,7 @@ namespace libtcod
 
 		public void Blit (Rectangle source, ConsoleWindow dest, int xDst, int yDst, float foregroundAlpha, float backgroundAlpha)
 		{
-			TCOD_console_blit (Handle, source.X, source.Y, source.Height, source.Width, dest.Handle, xDst, yDst, foregroundAlpha, backgroundAlpha);
+			TCOD_console_blit (Handle, source.X, source.Y, source.Width, source.Height, dest.Handle, xDst, yDst, foregroundAlpha, backgroundAlpha);
 		}
 
 		[DllImport (Constants.LibraryName)]
